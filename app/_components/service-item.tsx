@@ -88,6 +88,7 @@ export function ServiceItem({ service }: ServiceItemProps) {
     });
     if (result.serverError || result.validationErrors) {
       toast.error(result.validationErrors?._errors?.[0]);
+      return;
     }
     toast.success("Agendamento criado com sucesso!");
     setSelectedDate(undefined);
