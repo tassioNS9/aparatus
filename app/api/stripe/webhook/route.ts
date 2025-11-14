@@ -30,15 +30,32 @@ export const POST = async (request: Request) => {
       return NextResponse.error();
     }
 
+    // Retrieve session with expanded payment_intent to get chargeId
+    const expandedSession = await stripe.checkout.sessions.retrieve(
+      session.id,
+      {
+        expand: ["payment_intent"],
+      },
+    );
+
+    // Extract chargeId from payment_intent
+    const paymentIntent =
+      expandedSession.payment_intent as Stripe.PaymentIntent;
+    const chargeId =
+      typeof paymentIntent?.latest_charge === "string"
+        ? paymentIntent.latest_charge
+        : paymentIntent?.latest_charge?.id;
+
     await prisma.booking.create({
       data: {
         barbershopId,
         serviceId,
         date,
         userId,
+        stripeChargedId: chargeId || null,
       },
     });
-    revalidatePath("/bookings");
   }
+  revalidatePath("/bookings");
   return NextResponse.json({ received: true });
 };
