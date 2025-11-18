@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Aparatus - Sistema de Agendamento para Barbearias com IA
 
-First, run the development server:
+Este projeto é um sistema de agendamento online para barbearias, com integração de chatbot de Inteligência Artificial para atendimento automatizado.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologias Utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Next.js 13](https://nextjs.org/) (App Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Prisma ORM](https://www.prisma.io/)
+- [Stripe](https://stripe.com/) (pagamentos)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Query](https://tanstack.com/query/latest)
+- [NextAuth.js](https://next-auth.js.org/) (autenticação)
+- [Zod](https://zod.dev/) (validação)
+- [React Hook Form](https://react-hook-form.com/)
+- [date-fns](https://date-fns.org/)
+- Integração com Chatbot de IA
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Padrões de Projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Componentização com React
+- Separação de responsabilidades por pastas (`_actions`, `_components`, `_providers`)
+- Validação e tipagem forte com TypeScript e Zod
+- API Routes para autenticação e webhooks
 
-## Learn More
+## Setup e Configuração
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone o repositório
+2. Instale as dependências:
+	```bash
+	npm install
+	```
+3. Configure o arquivo `.env` com as variáveis necessárias (veja `.env.example`)
+4. Execute as migrations do Prisma:
+	```bash
+	npx prisma migrate dev
+	```
+5. (Opcional) Popule o banco de dados com dados iniciais:
+	```bash
+	npx tsx prisma/seed.ts
+	```
+6. Inicie o servidor de desenvolvimento:
+	```bash
+	npm run dev
+	```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Cadastro e autenticação de usuários
+- Listagem de barbearias, serviços e horários disponíveis
+- Agendamento e cancelamento de horários
+- Pagamento online via Stripe
+- Chatbot de IA para atendimento automatizado
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
