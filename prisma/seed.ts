@@ -1,6 +1,10 @@
 import { PrismaClient } from "@/generated/prisma/client";
 
-const prisma = new PrismaClient();
+import { PrismaPg } from "@prisma/adapter-pg";
+
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
 
 async function seedDatabase() {
   try {
@@ -39,6 +43,19 @@ async function seedDatabase() {
       "Aparência Impecável",
       "Estilo Urbano",
       "Estilo Clássico",
+    ];
+
+    const creativeSlugs = [
+      "barbearia-vintage",
+      "corte-e-estilo",
+      "barba-e-navalha",
+      "the-dapper-den",
+      "cabelo-e-cia.",
+      "machado-e-tesoura",
+      "barbearia-elegance",
+      "aparencia-impecavel",
+      "estilo-urbano",
+      "estilo-classico",
     ];
 
     // Endereços fictícios para as barbearias
@@ -104,6 +121,7 @@ async function seedDatabase() {
     const barbershops = [];
     for (let i = 0; i < 10; i++) {
       const name = creativeNames[i];
+      const slug = creativeSlugs[i];
       const address = addresses[i];
       const imageUrl = images[i];
 
@@ -111,6 +129,7 @@ async function seedDatabase() {
         data: {
           name,
           address,
+          slug,
           imageUrl: imageUrl,
           phones: ["(11) 99999-9999", "(11) 99999-9999"],
           description:
