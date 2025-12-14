@@ -29,7 +29,6 @@ const Home = async () => {
       <Header />
       <PageContainer>
         <SearchInput />
-
         <QuickSearchButtons />
 
         <Image
