@@ -3,6 +3,7 @@ import { actionClient } from "@/lib/action-client";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { returnValidationErrors } from "next-safe-action";
+import { isBefore } from "date-fns";
 import { headers } from "next/headers";
 import { z } from "zod";
 
@@ -17,6 +18,7 @@ export const createBooking = actionClient
     const session = await auth.api.getSession({
       headers: await headers(),
     });
+    const currentDate = new Date();
     if (!session?.user) {
       returnValidationErrors(inputSchema, {
         _errors: ["Unauthorized"],
@@ -43,6 +45,11 @@ export const createBooking = actionClient
       console.error("Já existe um agendamento para essa data.");
       returnValidationErrors(inputSchema, {
         _errors: ["Já existe um agendamento para essa data."],
+      });
+    }
+    if (isBefore(date, currentDate)) {
+      returnValidationErrors(inputSchema, {
+        _errors: ["Data Inválida!"],
       });
     }
     const booking = await prisma.booking.create({
