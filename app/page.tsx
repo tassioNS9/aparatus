@@ -2,6 +2,7 @@ import Image from "next/image";
 import Header from "./_components/header";
 import SearchInput from "./_components/search-input";
 import banner from "../public/banner.png";
+import bannerDesktop from "../public/banner-desktop.png";
 import { prisma } from "@/lib/prisma";
 import BarbershopItem from "./_components/barbershop-item";
 import Footer from "./_components/footer";
@@ -28,14 +29,22 @@ const Home = async () => {
     <main>
       <Header />
       <PageContainer>
-        <SearchInput />
-        <QuickSearchButtons />
+        <div className="flex flex-col space-y-3 lg:items-center">
+          <SearchInput />
+          <QuickSearchButtons />
+        </div>
 
         <Image
           src={banner}
           alt="Agende agora!"
           sizes="100vw"
-          className="h-auto w-full"
+          className="h-auto w-full lg:hidden"
+        />
+        <Image
+          src={bannerDesktop}
+          alt="Agende agora!"
+          sizes="100vw"
+          className="hidden h-auto w-full rounded-4xl lg:block"
         />
 
         <PageSection>

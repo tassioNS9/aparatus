@@ -62,6 +62,7 @@ const getStatus = (booking: Pick<Booking, "date" | "cancelled">) => {
 const BookingItem = ({ booking }: BookingItemProps) => {
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
 
+  /// O executeAsync: executeCancelBooking é apenas para renomear a serverAction
   const { execute: executeCancelBooking } = useAction(cancelBooking, {
     onSuccess: () => {
       toast.success("Reserva cancelada com sucesso!");

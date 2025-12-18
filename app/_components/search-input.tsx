@@ -17,7 +17,10 @@ const SearchInput = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-center gap-2 lg:w-[400px]"
+    >
       <Input
         type="text"
         placeholder="Pesquise serviços ou barbearias"
