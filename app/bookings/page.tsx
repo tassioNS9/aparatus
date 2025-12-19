@@ -53,7 +53,7 @@ const BookingsPage = async () => {
           {confirmedBookings.length > 0 && (
             <PageSection>
               <PageSectionTitle>Confirmados</PageSectionTitle>
-              <div className="space-y-3">
+              <div className="gap-3 space-y-3 lg:grid lg:grid-cols-3">
                 {confirmedBookings.map((booking) => (
                   <BookingItem key={booking.id} booking={booking} />
                 ))}
@@ -64,7 +64,7 @@ const BookingsPage = async () => {
           {finishedBookings.length > 0 && (
             <PageSection>
               <PageSectionTitle>Finalizados</PageSectionTitle>
-              <div className="space-y-3">
+              <div className="gap-3 space-y-3 lg:grid lg:grid-cols-3">
                 {finishedBookings.map((booking) => (
                   <BookingItem key={booking.id} booking={booking} />
                 ))}
