@@ -125,7 +125,7 @@ export function ServiceItem({ service }: ServiceItemProps) {
   return (
     <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
       <div className="border-border bg-card flex items-center justify-center gap-3 rounded-2xl border border-solid p-3">
-        <div className="relative size-[110px] shrink-0 overflow-hidden rounded-[10px]">
+        <div className="relative size-27.5 shrink-0 overflow-hidden rounded-[10px]">
           <Image
             src={service.imageUrl}
             alt={service.name}
@@ -157,7 +157,7 @@ export function ServiceItem({ service }: ServiceItemProps) {
         </div>
       </div>
 
-      <SheetContent className="w-[370px] overflow-y-auto p-0">
+      <SheetContent className="w-92.5 overflow-y-auto p-0">
         <div className="flex h-full flex-col gap-6">
           <SheetHeader className="px-5 pt-6">
             <SheetTitle className="text-lg font-bold">Fazer Reserva</SheetTitle>
